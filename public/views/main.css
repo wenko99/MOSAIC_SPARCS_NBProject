@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+.content-wrapper {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 60px 4fr 1fr 20px;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas: "navbar navbar navbar"
+                        "map map map"
+                        "search search search"
+                        "footer footer footer";
+}
+
+.navbar {
+    grid-area:navbar;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.map-wrapper {
+    grid-area: map;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid black;
+}
+
+.map-content {
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.map {
+    border: 0.5px solid yellow;
+}
+
+table td {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    background-color: #ccc;
+    border: 0.5px solid #fff;
+}
+
+table td.highlighted {
+    background-color: #999;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.search-wrapper {
+    grid-area: search;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid green;
+}

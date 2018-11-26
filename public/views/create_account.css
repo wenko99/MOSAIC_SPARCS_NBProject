@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+.content-wrapper {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 10fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-areas: "navbar navbar navbar"
+                        "left create_account right"
+                        "footer footer footer";
+}
+
+.create-account-wrapper {
+    grid-area: create_account;
+    display: flex;
+    flex-direction: column;
+}
+
+.create-account-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border: 2px solid green;
+}

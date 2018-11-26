@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <div class="content-wrapper">
+        <div class="navbar">
+            <h5>where navbar should be</h5>
+            <div class="profile" id="profile">
+                <h5><%= "Welcome, " + id + " !" %></h5>
+                <form method="POST" action="/api/v1/logout">
+                    <button id="btn_logout" type="submit">Logout</button>
+                </form>
+            </div>
+        </div>
+        <div class="map-wrapper">
+            <div class="map-content">
+                <h1>map title</h1>
+                <% include ./table.ejs %>
+            </div>
+            <div class="map-submit">
+                <form method="POST" action="/api/v1/update_map" enctype="multipart/form-data">
+                    <div><input type="file" name="img"></div>
+                    <div><input type="hidden" id="x_coord" name="x_coord" value=""></div>
+                    <div><input type="hidden" id="y_coord" name="y_coord" value=""></div>
+                    <div><input type="radio" name="check_type" value="SUBMIT" checked="checked">SUBMIT</div>
+                    <div><input type="radio" name="check_type" value="DELETE">DELETE</div>
+                    <button id="btn_upload" type="submit">UPLOAD</button>
+                </form>
+            </div>
+        </div>
+        <div class="search-wrapper">
+            <h5>Select Season : </h5>
+            <select class="select-season">
+                <option value="random">RANDOM</option>
+                <option value="spring">SPRING</option>
+                <option value="summer">SUMMER</option>
+                <option value="autumn">AUTUMN</option>
+                <option value="winter">WINTER</option>
+            </select>
+            <h5>Select Time : </h5>
+            <select class="select-time">
+                <option value="random">RANDOM</option>
+                <option value="day">DAY</option>
+                <option value="night">NIGHT</option>
+            </select>
+            <button id="btn_search">SEARCH</button>
+        </div>
+    </div>
+    <script src="./map_control.js" type="text/javascript"></script>
+</body>
+</html>
