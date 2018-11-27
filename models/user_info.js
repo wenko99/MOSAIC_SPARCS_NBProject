@@ -8,6 +8,8 @@ const userSchema = new Schema({
     image : [{
         img_path  : String,
         coord : [String],
+        season : String,
+        time : String
     }]
 });
 

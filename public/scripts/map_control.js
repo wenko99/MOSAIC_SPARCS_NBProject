@@ -5,6 +5,8 @@ for(let i = 0; i < map.rows.length; i++) {
         let cellname = `cell,${i},${j}`;
         let cell = document.getElementById(cellname);
 
+        cell.style.height = cell.style.width;
+
         cell.addEventListener('click', () => {
             cell.classList.toggle('highlighted');
             let find = selected_coordinate.indexOf(cellname);

@@ -10,10 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel": "^6.23.0",
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
+    "img-load": "^2.0.0",
+    "img-split": "^0.1.0",
     "mongoose": "^5.3.11",
     "multer": "^1.4.1",
     "nodemon": "^1.18.6",

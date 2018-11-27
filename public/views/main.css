@@ -29,6 +29,13 @@ body {
     justify-content: space-around;
 }
 
+.search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
 .profile {
     display: flex;
     flex-direction: row;
@@ -46,7 +53,6 @@ body {
 }
 
 .map-content {
-    font-size: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -57,15 +63,24 @@ body {
     border: 0.5px solid yellow;
 }
 
+table {
+    background-image: url("kaistcampusmap.jpg");
+    background-size: cover;               
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
 table td {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     text-align: center;
-    background-color: #ccc;
+    background-color: rgba(211, 211, 211, 0.3);
     border: 0.5px solid #fff;
 }
 
 table td.highlighted {
+    width: 0.01px;
+    height: 0.01px;
     background-color: #999;
 }
 
@@ -73,6 +88,19 @@ img {
     display: block;
     width: 100%;
     height: 100%;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.map-submit {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .search-wrapper {

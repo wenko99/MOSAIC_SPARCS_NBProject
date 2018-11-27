@@ -78,10 +78,34 @@ module.exports = function(app, upload, User) {
         return res.redirect('http://localhost:8000/');
     });
 
+    // search
+    app.get('/api/v1/search', (req, res) => {
+        console.log('attempt search user');
+        
+        if(req.session.id_val === req.query.search_query) {
+            // search for own account >>> redirect to main
+            return res.redirect('http://localhost:8000/main');
+        }
+        
+        User.findOne({id: req.query.search_query}, function(err, user) {
+            if(err) {
+                console.log(err);
+                // error >>> redirect to main
+                return res.redirect('http://localhost:8000/main');
+            }
+            if(!user) {
+                console.log('user not found');
+                // user not found >>> redirect to main
+                return res.redirect('http://localhost:8000/main');
+            }
+
+            return res.redirect(`http://localhost:8000/view?search=${user.id}`)
+        });
+    });
+
     // update map
     app.post('/api/v1/update_map', upload.single('img'), (req, res) => {
         console.log('attempt upload map');
-
         
         User.findOne({id: req.session.id_val}, function(err, user) {
             if(err) {
@@ -122,12 +146,13 @@ module.exports = function(app, upload, User) {
 
                 // update user
                 let ext = req.file['originalname'].split('.');
-                user.image.push({img_path : req.file.filename, coord : coord_arr});
+                user.image.push({img_path : req.file.filename, coord : coord_arr, season : req.body.season_update, time : req.body.time_update});
             }
             // delete selected coordinates in images that contains the coordinates
             else {
                 // update user
                 let coord_arr = merge_coordinates(req.body.x_coord, req.body.y_coord);
+                let index_to_delete = new Array();
                 for(let i = 0; i < user.image.length; i++) {
                     for(let j = 0; j < coord_arr.length; j++) {
                         let index = user.image[i].coord.indexOf(coord_arr[j])
@@ -135,6 +160,13 @@ module.exports = function(app, upload, User) {
                             user.image[i].coord.splice(index, 1);
                         }
                     }
+
+                    if(user.image[i].coord.length === 0) {
+                        index_to_delete.push(i);
+                    }
+                }
+                for(let i = index_to_delete.length - 1; i >= 0; i--) {
+                    user.image.splice(i, 1);
                 }
             }
 

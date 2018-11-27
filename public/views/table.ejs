@@ -1,22 +1,11 @@
 <table class="map" id="map">
-    <% for(let i = 0; i < 30; i++) { %>
+    <% for(let i = 0; i < 65; i++) { %>
         <tr>
             <% for(let j = 0; j < 50; j++) { %>
                 <td id=<%= 'cell,' + `${i}` + ',' + `${j}` %>>
-                    <% if(selected(i, j) >= 0) { %>
-                        <img src=<%= `${image[selected(i, j)].img_path}` %>>
-                    <% } %>
+                    <canvas id=<%= 'canvas,' + `${i}` + ',' + `${j}` %>></canvas>
                 </td>
             <% } %>
         </tr>
-    <% } %>
-
-    <% function selected(x, y) { %>
-        <% let coord = x + ',' + y; %>
-        <% for(let i = 0; i < image.length; i++) { %>
-            <% if(image[i].coord.indexOf(coord) >= 0) { %>
-                <% return i; %>
-            <% } %>
-        <% } %>
     <% } %>
 </table>
