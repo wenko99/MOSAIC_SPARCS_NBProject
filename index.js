@@ -42,9 +42,8 @@ const upload = multer({
             cb(null, 'uploads/');
         },
         filename: function (req, file, cb) {
-            //cb(null, new Date().valueOf() + path.extname(file.originalname));
             let name = req.session.id_val + new Date().valueOf() + path.extname(file.originalname);
-            console.log(name + ' created in upload_multer');
+            console.log(name + ' created in uploads');
             cb(null, name);
         }
     })

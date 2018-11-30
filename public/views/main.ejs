@@ -5,23 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Main Page</title>
-    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/bootstrap.css">
 </head>
 <body>
     <div class="content-wrapper">
         <div class="navbar">
-            <div class="search" id="search">
-                <form method="GET" action="/api/v1/search">
-                    <div><input type="text" name="search_query"></div>
-                    <button id="btn_search" type="submit">SEARCH</button>
-                </form>
-            </div>
-            <div class="profile" id="profile">
-                <h5><%= "Welcome, " + id + " !" %></h5>
-                <form method="POST" action="/api/v1/logout">
-                    <button id="btn_logout" type="submit">Logout</button>
-                </form>
-            </div>
+            <nav class="navbar navbar-dark bg-dark">
+                <div class="search" id="search">
+                    <form method="GET" action="/api/v1/search">
+                        <div><input type="text" name="search_query"></div>
+                        <button id="btn_search" type="submit">SEARCH</button>
+                    </form>
+                </div>
+                <div class="profile" id="profile">
+                    <h5><%= "Welcome, " + id + " !" %></h5>
+                    <form method="POST" action="/api/v1/logout">
+                        <button id="btn_logout" type="submit">Logout</button>
+                    </form>
+                </div>
+            </nav>
         </div>
         <div class="map-wrapper">
             <div class="map-content">
@@ -34,7 +37,7 @@
                     <div><input type="hidden" id="x_coord" name="x_coord" value=""></div>
                     <div><input type="hidden" id="y_coord" name="y_coord" value=""></div>
                     <div class="map-submit">
-                        <div><input type="radio" name="check_type" value="SUBMIT" checked="checked">SUBMIT</div>
+                        <div><input type="radio" name="check_type" value="POST" checked="checked">POST</div>
                         <div>
                             <select class="select-season-update" name="season_update">
                                 <option value="spring">SPRING</option>
@@ -49,9 +52,9 @@
                                 <option value="night">NIGHT</option>
                             </select>
                         </div>
+                        <div><input type="radio" name="check_type" value="DELETE">DELETE</div>
                     </div>
-                    <div><input type="radio" name="check_type" value="DELETE">DELETE</div>
-                    <button id="btn_upload" type="submit">UPLOAD</button>
+                    <button id="btn_upload" type="submit" class="btn btn-primary">UPLOAD</button>
                 </form>
             </div>
         </div>
@@ -129,5 +132,7 @@
             }
         }
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="../scripts/bootstrap.js"></script>
 </body>
 </html>

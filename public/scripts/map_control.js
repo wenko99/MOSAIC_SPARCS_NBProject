@@ -5,20 +5,20 @@ for(let i = 0; i < map.rows.length; i++) {
         let cellname = `cell,${i},${j}`;
         let cell = document.getElementById(cellname);
 
-        cell.style.height = cell.style.width;
-
-        cell.addEventListener('click', () => {
-            cell.classList.toggle('highlighted');
-            let find = selected_coordinate.indexOf(cellname);
-            if(find < 0) {
-                selected_coordinate.push(cellname);
-                show_selected(selected_coordinate);
-            }
-            else {
-                selected_coordinate.splice(find, 1);
-                show_selected(selected_coordinate);
-            }
-        });
+        if(cell.className !== 'map_else') {
+            cell.addEventListener('click', () => {
+                cell.classList.toggle('highlighted');
+                let find = selected_coordinate.indexOf(cellname);
+                if(find < 0) {
+                    selected_coordinate.push(cellname);
+                    show_selected(selected_coordinate);
+                }
+                else {
+                    selected_coordinate.splice(find, 1);
+                    show_selected(selected_coordinate);
+                }
+            });
+        }
     }
 }
 
@@ -42,4 +42,24 @@ function show_selected(selected_coordinate) {
 
     x_coord.value = show_x;
     y_coord.value = show_y;
+    
+    /*
+    // temporary code for checking the margins of the map
+    let temp = document.getElementById('temp');
+    let show_temp = '';
+    if(selected_coordinate.length % 2 === 0) {
+        for(let i = 0; i < selected_coordinate.length / 2; i++) {
+            show_temp += '[';
+            show_temp += '\'' + `${i}` + ',' + `${Number(selected_coordinate[i * 2].split(',')[2])}` + '\', ';
+            show_temp += '\'' + `${i}` + ',' + `${Number(selected_coordinate[i * 2 + 1].split(',')[2])}` + '\'';
+            if(i === selected_coordinate.length / 2 - 1) {
+                show_temp += ']';
+            }
+            else {
+                show_temp += '],'
+            }
+        }
+    }
+    temp.value = show_temp;
+    */
 }
