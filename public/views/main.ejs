@@ -8,38 +8,37 @@
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/bootstrap.css">
 </head>
-<body>
+<body class="text-center">
     <div class="content-wrapper">
         <div class="navbar">
-            <nav class="navbar navbar-dark bg-dark">
-                <div class="search" id="search">
-                    <form method="GET" action="/api/v1/search">
-                        <div><input type="text" name="search_query"></div>
-                        <button id="btn_search" type="submit">SEARCH</button>
-                    </form>
-                </div>
-                <div class="profile" id="profile">
-                    <h5><%= "Welcome, " + id + " !" %></h5>
-                    <form method="POST" action="/api/v1/logout">
-                        <button id="btn_logout" type="submit">Logout</button>
-                    </form>
-                </div>
-            </nav>
+            <div class="search" id="search">
+                <form method="GET" action="/api/v1/search_user" class="form-inline">
+                    <div><input type="text" name="search_query"></div>
+                    <button id="btn_search" type="submit">SEARCH</button>
+                </form>
+            </div>
+            <h3>MOSAIK</h3>
+            <div class="profile" id="profile">
+                <h5><%= "Welcome, " + id + " !" %></h5>
+                <form method="POST" action="/api/v1/logout">
+                    <button id="btn_logout" type="submit">Logout</button>
+                </form>
+            </div>
         </div>
         <div class="map-wrapper">
             <div class="map-content">
-                <h2><%= id + "\'s map" %></h2>
+                <h2><%= "How does " + id + " view KAIST?" %></h2>
                 <% include ./table.ejs %>
             </div>
             <div class="map-upload">
-                <form method="POST" action="/api/v1/update_map" enctype="multipart/form-data">
-                    <div><input type="file" name="img"></div>
+                <form method="POST" action="/api/v1/update_map" enctype="multipart/form-data" class="form-inline">
+                    <div><input type="file" name="img" class="form-control-file"></div>
                     <div><input type="hidden" id="x_coord" name="x_coord" value=""></div>
                     <div><input type="hidden" id="y_coord" name="y_coord" value=""></div>
                     <div class="map-submit">
                         <div><input type="radio" name="check_type" value="POST" checked="checked">POST</div>
                         <div>
-                            <select class="select-season-update" name="season_update">
+                            <select class="form-control form-control-sm" name="season_update">
                                 <option value="spring">SPRING</option>
                                 <option value="summer">SUMMER</option>
                                 <option value="autumn">AUTUMN</option>
@@ -47,7 +46,7 @@
                             </select>
                         </div>
                         <div>
-                            <select class="select-time-update" name="time_update">
+                            <select class="form-control form-control-sm" name="time_update">
                                 <option value="day">DAY</option>
                                 <option value="night">NIGHT</option>
                             </select>
@@ -59,21 +58,23 @@
             </div>
         </div>
         <div class="search-wrapper">
-            <h5>Select Season : </h5>
-            <select class="select-season-search">
-                <option value="random">RANDOM</option>
-                <option value="spring">SPRING</option>
-                <option value="summer">SUMMER</option>
-                <option value="autumn">AUTUMN</option>
-                <option value="winter">WINTER</option>
-            </select>
-            <h5>Select Time : </h5>
-            <select class="select-time-search">
-                <option value="random">RANDOM</option>
-                <option value="day">DAY</option>
-                <option value="night">NIGHT</option>
-            </select>
-            <button id="btn_search">SEARCH</button>
+            <form method="POST" action="/api/v1/search_map" class="form-inline">
+                <div>Select Season : </div>
+                <select class="form-control form-control-sm" name="search_season">
+                    <option value="random">RANDOM</option>
+                    <option value="spring">SPRING</option>
+                    <option value="summer">SUMMER</option>
+                    <option value="autumn">AUTUMN</option>
+                    <option value="winter">WINTER</option>
+                </select>
+                <div>Select Time : </div>
+                <select class="form-control form-control-sm" name="search_time">
+                    <option value="random">RANDOM</option>
+                    <option value="day">DAY</option>
+                    <option value="night">NIGHT</option>
+                </select>
+                <button id="btn_search" type="submit">SEARCH</button>
+            </form>
         </div>
     </div>
     <script src="./map_control.js" type="text/javascript"></script>

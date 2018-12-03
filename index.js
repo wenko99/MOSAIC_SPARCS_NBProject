@@ -1,3 +1,12 @@
+/*
+    More To Implement :
+
+    1. Image Searching - Making a mosaic --> api.js
+    2. Enable grid selection via dragging mouse --> map_control.js
+    3. Login / Create Account on main page, not on different pages --> login.html, create_account.html to main.ejs
+    4. better visualization via HTML/CSS modification
+*/
+
 // express
 const express = require('express');
 //multer

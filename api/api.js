@@ -78,8 +78,8 @@ module.exports = function(app, upload, User) {
         return res.redirect('http://localhost:8000/');
     });
 
-    // search
-    app.get('/api/v1/search', (req, res) => {
+    // search user
+    app.get('/api/v1/search_user', (req, res) => {
         console.log('attempt search user');
         
         if(req.session.id_val === req.query.search_query) {
@@ -103,6 +103,34 @@ module.exports = function(app, upload, User) {
         });
     });
 
+    // search map ... should be implemented
+    app.post('/api/v1/search_map', (req, res) => {
+        console.log('attempt search map');
+
+        User.find({}, function(err, users) {
+            if(err) {
+                console.log(err);
+                // error >>> redirect to main
+                return res.redirect('http://localhost:8000/main');
+            }
+            if(!users) {
+                console.log('user not found');
+                // user not found >>> redirect to main
+                return res.redirect('http://localhost:8000/main');
+            }
+
+            for(let i = 0; i < users.length; i++) {
+                for(let j = 0; j < users[i].image.length; j++) {
+                    if(req.body.search_season === users[i].image[j].season && req.body.search_time === users[i].image[j].time) {
+                        console.log(users[i].image[j]);
+                    }
+                }
+            }
+
+            return res.redirect('http://localhost:8000/main');
+        });
+    });
+
     // update map
     app.post('/api/v1/update_map', upload.single('img'), (req, res) => {
         console.log('attempt upload map');
@@ -120,7 +148,7 @@ module.exports = function(app, upload, User) {
             }
                 
             // upload image to /uploads directory and to db
-            if(req.body.check_type === "SUBMIT") {
+            if(req.body.check_type === "POST") {
                 if(!req.file) {
                     console.log('image not submitted');
                     // image not submitted >>> redirect to main
@@ -145,7 +173,7 @@ module.exports = function(app, upload, User) {
                 }
 
                 // update user
-                let ext = req.file['originalname'].split('.');
+                //let ext = req.file['originalname'].split('.');
                 user.image.push({img_path : req.file.filename, coord : coord_arr, season : req.body.season_update, time : req.body.time_update});
             }
             // delete selected coordinates in images that contains the coordinates
